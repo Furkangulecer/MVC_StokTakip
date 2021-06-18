@@ -1,0 +1,53 @@
+﻿@model List<MVC_StokTakip.Models.Entity.Markalar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Marka Listesi</h2>
+<table class="table">
+   <thead style="background-color:aliceblue">
+       <tr>
+           <th>
+               ID
+           </th>
+           <th>
+               Kategori
+           </th>
+           <th>
+               Marka
+           </th>
+           <th>
+               Açıklama
+           </th>
+           <th>
+               
+           </th>
+           <th>
+               
+           </th>
+       </tr>
+
+   </thead>       
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th>
+                @Html.DisplayFor(x => item.ID)
+            </th>
+            <td> @Html.DisplayFor(x=>item.Kategoriler.Kategori) </td>
+            <td> @Html.DisplayFor(x => item.Marka) </td>
+           <td>  @Html.DisplayFor(x => item.Aciklama) </td>
+            @*<td><a href="/Markalar/SilBilgiGetir/@item.ID" class="btn btn-danger">Sil</a></td>*@
+            <td>@Html.ActionLink("Sil Butonu", "Sil", new { id = item.ID }, new { onclick = "return confirm('Kayıt silinsin mi?')" })</td>
+            <td><a href="/Markalar/GuncelleBilgiGetir/@item.ID" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+
+        }
+
+    </tbody>       
+
+</table>
+
+<a href="/Markalar/Ekle/" class="btn btn-success">Marka Ekle</a>
